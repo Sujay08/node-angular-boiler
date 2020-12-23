@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.success{
+    color: #55E99F;
+}
+
+.danger{
+    color: #E63D3C; 
+}
+
+.pointer{
+    cursor: pointer; 
+}

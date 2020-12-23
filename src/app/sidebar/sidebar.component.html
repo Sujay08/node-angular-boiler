@@ -1,0 +1,20 @@
+
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a href="http://www.creative-tim.com" class="simple-text" style="display: flex;">
+            <div class="logo-img" style="width: 35px;">
+                <img src="../../assets/img/tournament/trophy.png"/>
+            </div>
+            <div>Juice kudithia?</div>
+        </a>
+    </div>
+    <ul class="nav responsive-nav">
+        <li class="separator hidden-lg hidden-md" *ngIf="isMobileMenu()"></li>
+        <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="{{menuItem.class}}">
+            <a  [routerLink]="[menuItem.path]">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+        </li>
+    </ul>
+</div>

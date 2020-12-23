@@ -1,0 +1,105 @@
+.fixture-card{
+    background-color: #fff;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+    box-shadow: 0px 1px 10px 0px rgba(0,0,0,0.2);
+}
+
+.fixture-card{
+    text-align: center;
+}
+
+.img-holder{
+    max-width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.win-marker{
+    width: 20px;
+    position: absolute;
+    right: 3px;
+    bottom: 4px;
+}
+
+.fixture-card .profile-img{
+    width: 90px;
+    height: 90px;
+    object-fit: cover;
+    object-position: top;
+    border-radius: 50%;
+}
+
+.fixture-card h4{
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.fixture-card h6{
+    display: inline-block;
+    background-color: #F9454A;
+    padding: 3px 9px;
+    color: #fff;
+    border-radius: 15px;
+    font-size: 12px;
+    margin: 0;
+}
+
+.fixture-card input{
+    text-align: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    max-width: 100px;
+    border-radius: 5px;
+}
+
+.flex-v{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.pointer{
+    cursor: pointer;   
+}
+
+.nav-pills{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-bottom: 25px;
+}
+
+
+.nav-pills>li>a {
+    color: #F9454A;
+    background-color: #fff;
+    padding: 3px 45px;
+    border: 2px solid #F9454A
+}
+
+.nav-pills>li.active>a {
+    color: #fff;
+    background-color: #F9454A;
+    padding: 3px 45px;
+}
+
+.tab-content>.tab-pane {
+    display: none;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+
+
+.logoImg{
+    width: 65px;
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+}

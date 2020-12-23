@@ -1,0 +1,161 @@
+User collection
+Name
+image
+description
+
+
+
+Game collection FIFA
+
+
+Points collection FIFA
+
+
+Game collection NBA
+
+
+Points collection NBA
+
+querys
+------
+
+SELECT * FROM sql_store.customers;
+
+USE sql_store
+
+SELECT first_name FROM customers;
+
+SELECT first_name, second_name, points FROM customers;
+
+select points + 10 FROM customers (adds +10 to all values in points table)
+
+Use sql_store;
+
+SELECT * FROM customers where customer_id=1;
+
+"--" syntax for comment
+
+SELECT FROM WHERE ORDER BY (this is the order, we have to follow this order in every query)
+
+SELECT points + 10 AS new_points FROM customers; (calculates and puts it in a new column called new_points)
+
+SELECT name, unit_price, (unit_price * 1.1) AS "new price" FROM products;
+
+select * from customers where points > 3000;
+
+SELECT * FROM orders WHERE order_date > '2018-12-31';
+
+select * from customers WHERE birth_date > '1990-01-01' AND points > 1000;
+
+select * from customers WHERE birth_date > '1990-01-01' OR points > 1000;
+
+SELECT * FROM order_items Where order_id = 6 AND quantity * unit_price > 30;
+
+SELECT * FROM customers WHERE state IN ('VA','GA','CA'); (should have these states)
+
+SELECT * FROM customers WHERE state NOT IN ('VA','GA','CA');
+
+SELECT * FROM customers WHERE points BETWEEN 1000 AND 3000;
+
+SELECT * FROM customers WHERE last_name LIKE '%y';(last_name ends with 'y')
+
+EG:
+LIKE 'y%'
+LIKE '%a%c%'
+LIKE '__Y'
+LIKE 'a__y'
+
+
+*Using Regular Expressions instead of LIKE
+
+SELECT * FROM customers WHERE last_name REGEXP 'field';
+
+SELECT * FROM customers WHERE last_name REGEXP '^field'; (^ means string should start with field)
+
+SELECT * FROM customers WHERE last_name REGEXP '$field'; ($ means string should end with field)
+
+SELECT * FROM customers WHERE last_name REGEXP 'field|rose|mac'; (find if they have any one of these)
+
+SELECT * FROM customers WHERE last_name REGEXP '[gim]e';
+get charecters that end from 'ge', 'ie', 'me'
+
+SELECT * FROM customers WHERE last_name REGEXP '[a-h]e'; (form 'a' to 'h' and e)
+
+SELECT * FROM customers WHERE phone IS NULL; (phone number is null)
+SELECT * FROM customers WHERE phone IS NOT NULL;
+
+SELECT * FROM customers ORDER BY first_name;
+
+SELECT * FROM customers limit 6
+
+SELECT * FROM customers limit 6, 3 (Offset by 6 and get next 3)
+
+***JOINS
+--------
+SELECT *
+FROM orders
+JOIN customers ON orders.customer_id = customers.customer_id;
+
+SELECT first_name, customers.customer_id, order_id 
+FROM orders
+JOIN customers ON orders.customer_id = customers.customer_id;
+
+Assigning alias to tables to use as short form:-
+
+SELECT first_name, c.customer_id, order_id 
+FROM orders o
+JOIN customers c ON o.customer_id = c.customer_id;
+
+SELECT * FROM orders WHERE order_data < '2019-01-01'
+
+Join tables from databases:
+SELECT * 
+FROM order_items oi
+Join sql_inventory.products p 
+    ON oi.product_id = p.product_id
+
+join table with itself
+SELECT e.employee_id, m.employee_id, e.first_name, m.first_name 
+FROM employees e
+JOIN employees m ON e.reports_to = m.employee_id;
+
+Outer Joins2 types: LEFT JOIN and RIGHT JOIN
+eg: say we get customers who have ordered something. thats a INNER JOINT. now what if we need to get all the customers. who have ordered and not ordered.
+
+SELECT first_name, c.customer_id, order_id 
+FROM orders o
+RIGHT JOIN customers c ON o.customer_id = c.customer_id; 
+
+first table is LEFT and second table is RIGHT
+SELF OUTER JOINSsay we need to get all employees mapped to a manager. but we want to see the manager name also in the result. now we have to use a SELF OUTER JOINT
+SELECT *
+FROM employee e
+LEFT JOIN employee m
+	ON e.reports_to = m.employee_id;
+
+USING Claus Instead of using ON when JOIN we can use USING, eg:JOIN x USING (y_id)
+CROSS JOINmatch every customer with every productSELECT c.first_name, p.name AS product_nameFROM customers cCROSS JOIN products p
+UNIONcombining 2 conditions
+SELECT order_id, order_date, 'ACTIVE' AS status 
+FROM orders
+WHERE order_date >= '2019-01-01'
+UNION
+SELECT order_id, order_date, 'ARCHIVE' AS status 
+FROM orders
+WHERE order_date < '2019-01-01'
+
+Inserting into single row
+INSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL);
+
+Inserting into multiple row
+INSERT INTO customers(keys)  VALUES (DEFAULT, 'value x', NULL),      (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL),       (DEFAULT, 'value x', NULL);
+
+LAST_INSERTED_ID()
+
+Make a copy of a tableCREATE TABLE orders_archived AS SELECT * FROM orders(Table properties like AI , NN and PK will not be copied. only the data)  
+Using SELECT as SUB QUERYINSERT INTO orders_archived
+update a row:UPDATE invoices
+SET payment_total = 10, payment_date = '2019-03-01'
+WHERE invoice_id = 1
+
+
